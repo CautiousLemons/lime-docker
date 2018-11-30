@@ -38,4 +38,7 @@ COPY v1.mp4 /lime
 ENV HOME /lime
 
 # Define default command
-CMD [./install.sh]
+CMD ./install.sh
+
+# ENTRYPOINT
+ENTRYPOINT ["/bin/sh"]
