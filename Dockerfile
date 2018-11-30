@@ -41,4 +41,4 @@ ENV HOME /lime
 CMD ./install.sh
 
 # ENTRYPOINT
-ENTRYPOINT ["/bin/sh"]
+ENTRYPOINT ["/bin/bash", "-l", "-c"]
