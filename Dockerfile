@@ -41,4 +41,5 @@ ENV HOME /lime
 CMD ./install.sh
 
 # ENTRYPOINT
+# TODO: stop container from dying
 ENTRYPOINT ["/bin/bash", "-l", "-c"]
