@@ -22,23 +22,20 @@ RUN apt update -y && \
      libtheora-dev \
      libvorbis-dev \
      mercurial \
-     yasm \
-
-# Install v4l2loopback
-RUN git clone https://github.com/umlaeute/v4l2loopback.git . && \
-    cd v4l2loopback && \
-    make && make install && depmod -a \
-    modprobe v4l2loopback exclusive_caps=1 \
-    v4l2-ctl --list-devices
+     yasm
 
 # Cleanup
 RUN apt autoremove -y && apt clean -y
 
+# Install v4l2loopback
+COPY install.sh /lime
+RUN chmod +x /lime/install.sh
+
 # Copy the video file
-COPY v1.mp4 .
+COPY v1.mp4 /lime
 
 # Set environment variables
 ENV HOME /lime
 
 # Define default command
-CMD ["bash"]
+CMD [./install.sh]
