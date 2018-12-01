@@ -1,7 +1,6 @@
 #!/bin/bash
 # Start streaming the file
 ls /dev/video*
-some_command
 if [ $? -eq 0 ]; then
     echo "Video device(s) mounted successfully!"
     echo "Starting to stream the video..."
