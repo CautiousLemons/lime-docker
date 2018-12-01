@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM jrottenberg/ffmpeg:4.0-ubuntu
 
 # MAINTAINER Amir Haghighati <haghighati.amir@gmail.com>
 # https://github.com/anewage/
@@ -9,37 +9,20 @@ WORKDIR /lime
 # Install packages
 RUN apt update -y && \
     apt upgrade -y && \
-    apt install -y \
-     ffmpeg \
-     build-essential \
-     git \
-     libopus-dev \
-     libmp3lame-dev \
-     libfdk-aac-dev \
-     libvpx-dev \
-     libx264-dev \
-     libass-dev \
-     libtheora-dev \
-     libvorbis-dev \
-     mercurial \
-     yasm
+    apt install -y firefox xvfb
 
 # Cleanup
 RUN apt autoremove -y && apt clean -y
 
-# Install v4l2loopback
-COPY install.sh /lime
-RUN chmod +x /lime/install.sh
-
-# Copy the video file
+# Copy the video and initial script file
 COPY v1.mp4 /lime
+COPY init.sh /lime
+
+# Make the script runnable
+RUN chmod +x /lime/init.sh
 
 # Set environment variables
 ENV HOME /lime
 
-# Define default command
-CMD ./install.sh
-
 # ENTRYPOINT
-# TODO: stop container from dying
-ENTRYPOINT ["/bin/bash", "-l", "-c"]
+ENTRYPOINT ["./init.sh"]
