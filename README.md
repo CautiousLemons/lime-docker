@@ -18,8 +18,3 @@ Now, run the container and mount the device to the device number 0 (i.e., `/dev/
 ```
 docker run -ti --rm  -e DISPLAY=$DISPLAY        -v /tmp/.X11-unix:/tmp/.X11-unix --device /dev/video1:/dev/video0  lime
 ```
-
-Inside the host, consume the video feed:
-```
-ffplay /dev/video1
-```
