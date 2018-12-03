@@ -14,9 +14,9 @@ List the devices to ensure that the video device has been created:
 v4l2-ctl --list-devices
 ```
 
-Now, run the container and mount the device to the device number 0 (i.e., `/dev/video0`):
+Now, run the container and mount the device to the device number 0 (i.e., `/dev/video0`). NOTE: Since we are running firefox, you have to also give the env variables of your screen socket:
 ```
-docker run -it --device /dev/video1:/dev/video0 anewage/lime-docker
+docker run -ti --rm  -e DISPLAY=$DISPLAY        -v /tmp/.X11-unix:/tmp/.X11-unix --device /dev/video1:/dev/video0  lime
 ```
 
 Inside the host, consume the video feed:
