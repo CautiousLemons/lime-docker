@@ -1,0 +1,1 @@
+sudo chown lime:lime /dev/video0
