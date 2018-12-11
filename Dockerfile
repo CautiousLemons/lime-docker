@@ -25,7 +25,9 @@ RUN export uid=1000 gid=1000 && \
 # Copy the video and initial script file
 COPY v1.mp4 /home/lime
 COPY init.sh /home/lime
+COPY user.js /home/lime
 COPY bin /bin
+#COPY config/.mozilla /home/lime/.mozilla
 
 # Make the script runnable
 RUN chmod +x /home/lime/init.sh
