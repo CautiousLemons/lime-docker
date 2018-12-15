@@ -10,6 +10,7 @@ if [ $? -eq 0 ]; then
     echo "Video device(s) mounted successfully!"
     stream &
     cp user.js .mozilla/firefox/*.default/
+    echo "\n\n=================================== COPIED =========================\n\n"
     xvfb-run firefox --new-tab meet.jit.si/random
 else
     echo "No mounted video device founded."
