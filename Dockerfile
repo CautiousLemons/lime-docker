@@ -8,7 +8,7 @@ WORKDIR /home/lime
 # Install packages
 RUN apt update -y && \
     apt upgrade -y && \
-    apt install -y firefox xvfb sudo
+    apt install -y firefox xvfb sudo iproute wondershaper vnstat iputils-ping
 
 # Cleanup
 RUN apt autoremove -y && apt clean -y
@@ -23,19 +23,16 @@ RUN export uid=1000 gid=1000 && \
     chown ${uid}:${gid} -R /home/lime
 
 # Copy the video and initial script file
-COPY init.sh /home/lime
-COPY user.js /home/lime
+COPY config /home/lime/config
 COPY bin /bin
 #COPY config/.mozilla /home/lime/.mozilla
 
-# Make the script runnable
-RUN chmod +x /home/lime/init.sh
+# Make the scripts runnable
 RUN chmod +x /bin/*
-RUN echo "=========================READY!!!!!=========================="
 
 # Place the user
 USER lime
 ENV HOME /home/lime
 
 # ENTRYPOINT
-ENTRYPOINT ["./init.sh"]
+ENTRYPOINT ["entrypoint"]

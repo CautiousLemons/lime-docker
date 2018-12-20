@@ -2,3 +2,12 @@
 echo "Starting to stream the video..."
 ffmpeg -re -i $NODE_VIDEO -map 0:v -f v4l2 /dev/video0
 echo "Video stream ended."
+
+
+ps -aux | grep "ping $PING_URL" | kill -s SIGINT `awk '{print $2}'i`
+echo "===============KILLED PING================"
+ps -aux | grep "vnstat -l" | kill `awk '{print $2}'i`
+echo "===============KILLED VNSTAT==============="
+ps -aux | grep firefox | kill `awk '{print $2}'i`
+echo "===============KILLED FIREFOX============="
+
