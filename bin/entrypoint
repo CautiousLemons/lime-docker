@@ -3,16 +3,16 @@
 echo "RUNNING XVFB..."
 xvfb-run --auto-servernum firefox &
 echo "Sleeping..."
-sleep 2
+sleep 3
 echo "Now awake!"
-ps -aux | grep Xvfb | kill `awk '{print $2}'i`
+ps -aux | grep "xvfb-run --auto-servernum firefox" | kill `awk '{print $2}'i`
 ls /dev/video*
 if [ $? -eq 0 ]; then
     echo "Changing permissions..."
     lime
     echo "Video device(s) mounted successfully!"
 #    stream &
-    cp user.js .mozilla/firefox/*.default/
+    cp config/user.js .mozilla/firefox/*.default/ 
     manipulate &
     lognet &
     stream &
