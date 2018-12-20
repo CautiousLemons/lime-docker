@@ -1,7 +1,7 @@
 #!/bin/bash
 # Start streaming the file
 echo "RUNNING XVFB..."
-xvfb-run firefox &
+xvfb-run --auto-servernum firefox &
 echo "Sleeping..."
 sleep 3
 echo "Now awake!"
@@ -16,7 +16,7 @@ if [ $? -eq 0 ]; then
     manipulate &
     lognet &
     stream &
-    firefox --new-tab $ROOM_URL
+    xvfb-run --auto-servernum firefox --new-tab $ROOM_URL
 else
     echo "No mounted video device founded."
 fi
