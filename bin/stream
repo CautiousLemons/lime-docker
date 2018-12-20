@@ -6,7 +6,7 @@ echo "Video stream ended."
 
 ps -aux | grep "ping $PING_URL" | kill -s SIGINT `awk '{print $2}'i`
 echo "===============KILLED PING================"
-ps -aux | grep "vnstat -l" | kill `awk '{print $2}'i`
+ps -aux | grep "vnstat -l" | kill -s SIGINT `awk '{print $2}'i`
 echo "===============KILLED VNSTAT==============="
 ps -aux | grep firefox | kill `awk '{print $2}'i`
 echo "===============KILLED FIREFOX============="
