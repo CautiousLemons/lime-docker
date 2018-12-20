@@ -1,14 +1,14 @@
 version: '3'
 services:
         lime_node:
-                build: .
+                image: lime
                 volumes:
-                        - "./videos:/lime/videos"
+                        - "./videos:/home/lime/videos"
                         - "/tmp/.X11-unix:/tmp/.X11-unix"                     
                 devices: 
                         - "/dev/video1:/dev/video0"
                 environment:
                         - ROOM_URL=https://appear.in/cn2
                         - DISPLAY=$DISPLAY
-                        - NODE_VIDEO=/home/lime/n1.mp4
+                        - NODE_VIDEO=/home/lime/videos/n1.mp4
 

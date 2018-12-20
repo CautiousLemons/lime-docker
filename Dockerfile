@@ -23,7 +23,6 @@ RUN export uid=1000 gid=1000 && \
     chown ${uid}:${gid} -R /home/lime
 
 # Copy the video and initial script file
-COPY v1.mp4 /home/lime
 COPY init.sh /home/lime
 COPY user.js /home/lime
 COPY bin /bin
@@ -32,6 +31,7 @@ COPY bin /bin
 # Make the script runnable
 RUN chmod +x /home/lime/init.sh
 RUN chmod +x /bin/*
+RUN echo "=========================READY!!!!!=========================="
 
 # Place the user
 USER lime
